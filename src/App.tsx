@@ -1,15 +1,16 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
 import {v4 as uuid} from "uuid";
+import { CompleteTodoList } from './components/CompleteTodoList';
+import { TodoList } from './components/TodoList';
 
 
-type Todo = {
+export type Todo = {
   value: string,
   id: string,
-}
+};
 
 function App() {
-  console.log("レンダリング");
   const inputRef = useRef<HTMLInputElement>(null!);
   const [todos, setTodos] = useState<Array<Todo>>([]);
   const [completeTodos, setCompleteTodos] = useState<Todo[]>([]);
@@ -49,30 +50,13 @@ function App() {
   return (
     <div className="App">
       <div>
-        <h2>Todoリスト</h2>
+        <h2>TypeScript Todo</h2>
         <form onSubmit={(e)=> handleSubmit(e)}>
           <input type="text" ref={inputRef} className="inputText" required/>
           <input type="submit" value="追加" className="submitButton"/>
         </form>
-        <h4>未完了のタスク: {todos.length}個</h4>
-        <ul>
-          {todos.map((todo) => (
-            <li key={todo.id}>
-              {todo.value}
-              <button onClick={()=> handleComplete(todo.id)}>完了</button>
-              <button onClick={()=> handleDelete(todo.id)}>削除</button>
-            </li>           
-          ))}
-        </ul>
-        <h4>完了したタスク: {completeTodos.length}個</h4>
-        <ul>
-          {completeTodos.map((completeTodo) => (
-            <li key={completeTodo.id}>
-              {completeTodo.value}
-              <button onClick={()=> handleBack(completeTodo.id)}>戻す</button>
-            </li>           
-          ))}
-        </ul>
+        <TodoList todos={todos} handleComplete={handleComplete} handleDelete={handleDelete} />
+        <CompleteTodoList completeTodos={completeTodos} handleBack={handleBack} />
       </div>
     </div>
   );
