@@ -38,7 +38,7 @@ function App() {
 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault(); // Reload防止
     const newTodo: Todo = {
       value: inputRef.current.value,
       id: uuid(),

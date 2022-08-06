@@ -1,5 +1,6 @@
 import React from 'react';
 import {Todo} from "../App"
+import styled from "styled-components";
 
 type Props = {
     todos: Todo[],
@@ -7,10 +8,21 @@ type Props = {
     handleDelete: (id: string) => void
 };
 
+const TodoListWrapper = styled.section `
+  background-color: snow;
+  border-radius:5px;
+  width:300px;
+  min-height: 200px;
+  padding: 3px;
+  h4 {
+    text-align: center;
+  }
+`;
+
 export const TodoList: React.FC<Props> = ({todos, handleComplete, handleDelete}) => {
   return (
-    <>
-        <h4>未完了のタスク: {todos.length}個</h4>
+    <TodoListWrapper>
+        <h4>未完了のタスク: {todos.length}件</h4>
         <ul>
             {todos.map((todo) => (
                 <li key={todo.id}>
@@ -20,6 +32,6 @@ export const TodoList: React.FC<Props> = ({todos, handleComplete, handleDelete})
                 </li>           
             ))}
         </ul>
-    </>
+    </TodoListWrapper>
   )
 };
