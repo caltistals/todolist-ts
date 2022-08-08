@@ -11,6 +11,10 @@ form {
   border-radius: 5px;
 }
 
+.App h2 {
+  color: grey;
+}
+
 .App div {
   display: flex;
   flex-direction: column;

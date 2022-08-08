@@ -16,6 +16,7 @@ const TodoListWrapper = styled.section `
   padding: 3px;
   h4 {
     text-align: center;
+    color: grey;
   }
 `;
 
